@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -112,7 +113,7 @@ export default {
             '--tw-prose-pre-bg': theme('colors.card / 1'),
             '--tw-prose-th-borders': theme('colors.border / 1'),
             '--tw-prose-td-borders': theme('colors.border / 1'),
-            '--tw-prose-invert-body': theme('colors.foreground / 1'), // Adjust for dark mode if needed
+            '--tw-prose-invert-body': theme('colors.foreground / 1'), 
             '--tw-prose-invert-headings': theme('colors.primary / 1'),
             '--tw-prose-invert-lead': theme('colors.muted.foreground / 1'),
             '--tw-prose-invert-links': theme('colors.primary / 1'),
@@ -130,7 +131,7 @@ export default {
             '--tw-prose-invert-td-borders': theme('colors.border / 1'),
             table: {
               fontSize: theme('fontSize.sm'),
-              whiteSpace: 'nowrap',
+              // whiteSpace: 'nowrap', // Removed to allow wrapping
             },
             thead: {
               borderBottomWidth: '1px',

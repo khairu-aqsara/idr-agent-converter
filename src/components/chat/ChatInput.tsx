@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { FC } from "react";
@@ -37,7 +38,7 @@ const ChatInput: FC<ChatInputProps> = ({ onSubmit, isLoading }) => {
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="flex items-start gap-2 p-4 border-t border-border"
+      className="flex items-start gap-2 p-4 border-t border-border w-full"
     >
       <div className="flex-grow">
         <Input

@@ -1,3 +1,4 @@
+
 // src/components/chat/ChatMessage.tsx
 "use client";
 
@@ -18,6 +19,9 @@ const ChatMessage: FC<ChatMessageProps> = ({ sender, text, isLoading }) => {
   const isUser = sender === "user";
   const isAi = sender === "ai";
 
+  const messageMaxWidth = isUser ? "max-w-[80%] md:max-w-[70%]" : "max-w-[95%] md:max-w-[90%]";
+
+
   return (
     <div
       className={cn(
@@ -34,11 +38,12 @@ const ChatMessage: FC<ChatMessageProps> = ({ sender, text, isLoading }) => {
       )}
       <div
         className={cn(
-          "max-w-[80%] md:max-w-[70%] rounded-lg px-3 py-2 shadow-md prose prose-sm dark:prose-invert prose-p:my-1 prose-headings:my-2 prose-table:my-2 prose-th:px-2 prose-th:py-1 prose-td:px-2 prose-td:py-1",
+          "rounded-lg px-3 py-2 shadow-md prose prose-sm dark:prose-invert prose-p:my-1 prose-headings:my-2 prose-table:my-2 prose-th:px-2 prose-th:py-1 prose-td:px-2 prose-td:py-1",
+          messageMaxWidth,
           isUser
             ? "bg-primary text-primary-foreground rounded-br-none"
             : "bg-card text-card-foreground rounded-bl-none",
-          isAi && !isLoading && "prose-table:border prose-table:rounded-md prose-table:border-border" // Add border to AI tables
+          isAi && !isLoading && "prose-table:w-full prose-table:border prose-table:rounded-md prose-table:border-border"
         )}
       >
         {isLoading ? (
