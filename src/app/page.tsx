@@ -12,7 +12,7 @@ export default function Home() {
             IDR Currency Converter
           </h1>
           <p className="text-muted-foreground mt-2 text-lg">
-            Convert IDR to GBP, USD, MYR, AUD, and SGD
+            Get IDR exchange rates for various global currencies.
           </p>
         </div>
         <ThemeToggle />

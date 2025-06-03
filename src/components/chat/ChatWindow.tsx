@@ -13,7 +13,7 @@ const ChatWindow: FC = () => {
   const initialMessage: Message = {
     id: "initial-welcome",
     sender: "ai",
-    text: "Hello! I'm an IDR Currency Converter. Ask me to convert an IDR amount to GBP, USD, MYR, AUD, or SGD (e.g., 'convert 100000 IDR' or 'IDR to USD').",
+    text: "Hello! I'm your IDR Currency Converter. Ask me to convert an IDR amount to various global currencies (e.g., 'convert 100000 IDR' or 'IDR to USD'). I can provide rates for GBP, USD, MYR, AUD, SGD, JPY, EUR, CAD, CHF, and NZD.",
     isLoading: false,
   };
   const [messages, setMessages] = useState<Message[]>([initialMessage]);

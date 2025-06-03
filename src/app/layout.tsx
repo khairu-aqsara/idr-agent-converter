@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: 'IDR Currency Converter',
-  description: 'AI-powered IDR to GBP, USD, MYR, AUD, SGD currency converter',
+  description: 'Your friendly AI-powered IDR currency converter for global exchange rates.',
 };
 
 export default function RootLayout({
