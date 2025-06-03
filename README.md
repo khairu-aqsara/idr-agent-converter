@@ -106,9 +106,3 @@ The AI prompt is designed to provide plausible exchange rates. These are not liv
 -   `public/`: Static assets.
 -   `tailwind.config.ts`: Tailwind CSS configuration.
 -   `next.config.ts`: Next.js configuration.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit pull requests or open issues.
-
-(This is a basic README. You can expand it further with deployment instructions, more detailed explanations of specific features, or troubleshooting tips as needed.)
