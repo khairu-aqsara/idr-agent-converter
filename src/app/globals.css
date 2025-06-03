@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    --background: 300 47% 93%; /* Very light purple #F3E5F5 */
-    --foreground: 279 25% 25%; /* Dark purple for text on background */
+    --background: 0 35% 12%; /* Dark Red Background */
+    --foreground: 0 0% 95%; /* Light Text for Dark Red Background */
 
-    --card: 300 47% 98%; /* Slightly lighter than background, #FAF0FA */
-    --card-foreground: 279 25% 25%; /* Same as foreground */
+    --card: 0 35% 10%; /* Slightly darker red for cards */
+    --card-foreground: 0 0% 95%; /* Light text on cards */
 
-    --popover: 300 47% 98%;
-    --popover-foreground: 279 25% 25%;
+    --popover: 0 35% 10%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 279 66% 60%; /* Saturated purple #A052DE */
-    --primary-foreground: 0 0% 98%; /* Almost white */
+    --primary: 0 60% 50%; /* Strong Red */
+    --primary-foreground: 0 0% 98%; /* White text on primary */
 
-    --secondary: 279 50% 85%; /* Lighter purple #C9A9E8 */
-    --secondary-foreground: 279 25% 25%; /* Dark purple for text on secondary */
+    --secondary: 0 40% 30%; /* Muted Red */
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 300 40% 90%; /* Muted purple #EADDF0 */
-    --muted-foreground: 279 25% 45%; /* Slightly lighter dark purple for text on muted */
+    --muted: 0 30% 20%; /* Dark muted red */
+    --muted-foreground: 0 0% 65%; /* Grayish text on muted */
 
-    --accent: 208 72% 70%; /* Soft blue #7CB9E8 */
-    --accent-foreground: 208 25% 25%; /* Dark blue for text on accent */
+    --accent: 15 70% 55%; /* Orange-red accent */
+    --accent-foreground: 0 0% 98%; /* White text on accent */
 
-    --destructive: 0 84.2% 60.2%; /* Default red */
+    --destructive: 0 84.2% 60.2%; /* Default red for destructive actions */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 300 30% 85%; /* Subtle purple border #E0D1E6 */
-    --input: 300 30% 88%; /* Slightly lighter border for input background #E8DCEB */
-    --ring: 279 66% 60%; /* Primary color for focus rings */
+    --border: 0 30% 22%; /* Subtle red border */
+    --input: 0 30% 25%; /* Input background */
+    --ring: 0 60% 50%; /* Primary red for focus rings */
 
     --radius: 0.5rem;
 
@@ -40,7 +40,7 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 0 0% 98%; /* Default light sidebar, can be adjusted if needed for dark red theme */
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
@@ -51,26 +51,26 @@
   }
 
   .dark {
-    /* Keeping default dark theme, can be customized if needed */
+    /* Standard Dark Theme */
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 279 66% 60%; /* Saturated purple for dark mode too */
+    --primary: 279 66% 60%; 
     --primary-foreground: 0 0% 98%;
-    --secondary: 279 50% 20%; /* Darker secondary for dark mode */
+    --secondary: 279 50% 20%; 
     --secondary-foreground: 0 0% 98%;
-    --muted: 300 20% 15%; /* Darker muted for dark mode */
+    --muted: 300 20% 15%; 
     --muted-foreground: 0 0% 63.9%;
-    --accent: 208 72% 50%; /* Darker accent for dark mode */
+    --accent: 208 72% 50%; 
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 300 20% 20%;
     --input: 300 20% 20%;
-    --ring: 279 66% 60%; /* Primary color for rings */
+    --ring: 279 66% 60%; 
 
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
