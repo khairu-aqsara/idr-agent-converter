@@ -2,7 +2,7 @@
 'use server';
 
 /**
- * @fileOverview A Genkit flow that returns a default message when no answer is found.
+ * @fileOverview A Genkit flow that returns a message when the currency conversion cannot be performed as requested.
  *
  * - handleNoAnswer - A function that returns a default no answer message.
  * - HandleNoAnswerInput - The input type for the handleNoAnswer function.
@@ -13,12 +13,12 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const HandleNoAnswerInputSchema = z.object({
-  query: z.string().describe('The user query that could not be answered.'),
+  query: z.string().describe('The user query that could not be fully answered.'),
 });
 export type HandleNoAnswerInput = z.infer<typeof HandleNoAnswerInputSchema>;
 
 const HandleNoAnswerOutputSchema = z.object({
-  answer: z.string().describe('A default message indicating no answer was found.'),
+  answer: z.string().describe('A message indicating limitations or an issue with the query.'),
 });
 export type HandleNoAnswerOutput = z.infer<typeof HandleNoAnswerOutputSchema>;
 
@@ -30,7 +30,9 @@ const prompt = ai.definePrompt({
   name: 'handleNoAnswerPrompt',
   input: {schema: HandleNoAnswerInputSchema},
   output: {schema: HandleNoAnswerOutputSchema},
-  prompt: `I am sorry, I cannot find the answer to your question: {{{query}}}. Please try again with a different question.`,
+  prompt: `I am a currency converter specializing in IDR. I can convert IDR to GBP, USD, MYR, AUD, and SGD.
+Your query was: {{{query}}}.
+Please try asking for an IDR conversion to one of the supported currencies. For example: "Convert 50000 IDR".`,
 });
 
 const handleNoAnswerFlow = ai.defineFlow(

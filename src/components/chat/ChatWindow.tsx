@@ -7,20 +7,13 @@ import { answerQuestion } from "@/ai/flows/answer-question";
 import { handleNoAnswer } from "@/ai/flows/handle-no-answer";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Bot } from "lucide-react";
-
-interface Message {
-  id: string;
-  sender: "user" | "ai" | "error";
-  text: string;
-  isLoading?: boolean;
-}
+import { Bot, HelpCircle } from "lucide-react"; // Changed icon
 
 const ChatWindow: FC = () => {
   const initialMessage: Message = {
     id: "initial-welcome",
     sender: "ai",
-    text: "Hello! I'm Bali Buddy. Ask me anything about Bali, and I'll do my best to help using information from bali.love.",
+    text: "Hello! I'm an IDR Currency Converter. Ask me to convert an IDR amount to GBP, USD, MYR, AUD, or SGD (e.g., 'convert 100000 IDR' or 'IDR to USD').",
     isLoading: false,
   };
   const [messages, setMessages] = useState<Message[]>([initialMessage]);
@@ -28,6 +21,13 @@ const ChatWindow: FC = () => {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  interface Message {
+    id: string;
+    sender: "user" | "ai" | "error";
+    text: string;
+    isLoading?: boolean;
+  }
+  
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -63,7 +63,15 @@ const ChatWindow: FC = () => {
           )
         );
       } else {
-        throw new Error("No answer received from AI.");
+        // This case might not be hit if the AI prompt is robust enough to always return an answer
+        const noAnswerResponse = await handleNoAnswer({ query: question });
+         setMessages((prevMessages) =>
+          prevMessages.map((msg) =>
+            msg.id === aiPlaceholderMessage.id
+              ? { ...msg, text: noAnswerResponse.answer, sender: "ai", isLoading: false } // Changed sender to "ai" for consistency
+              : msg
+          )
+        );
       }
     } catch (error) {
       console.error("Error fetching answer:", error);
@@ -100,8 +108,8 @@ const ChatWindow: FC = () => {
     <Card className="w-full max-w-2xl h-[70vh] md:h-[80vh] flex flex-col shadow-2xl rounded-xl overflow-hidden">
       <CardHeader className="border-b border-border">
         <CardTitle className="flex items-center gap-2 font-headline text-2xl">
-          <Bot className="h-7 w-7 text-primary" />
-          Bali Buddy
+          <HelpCircle className="h-7 w-7 text-primary" /> {/* Changed Icon */}
+          IDR Converter
         </CardTitle>
       </CardHeader>
       <CardContent className="flex-grow p-0 overflow-hidden">

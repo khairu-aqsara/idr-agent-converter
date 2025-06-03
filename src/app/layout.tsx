@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Bali Buddy',
-  description: 'Your AI-powered guide to Bali',
+  title: 'IDR Currency Converter',
+  description: 'AI-powered IDR to GBP, USD, MYR, AUD, SGD currency converter',
 };
 
 export default function RootLayout({

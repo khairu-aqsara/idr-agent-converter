@@ -42,7 +42,7 @@ const ChatInput: FC<ChatInputProps> = ({ onSubmit, isLoading }) => {
       <div className="flex-grow">
         <Input
           {...register("question")}
-          placeholder="Ask about Bali..."
+          placeholder="Enter IDR amount (e.g., 100000 IDR) or ask for rates..."
           className="w-full resize-none"
           disabled={isLoading}
           aria-invalid={errors.question ? "true" : "false"}

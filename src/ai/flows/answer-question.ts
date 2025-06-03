@@ -1,9 +1,9 @@
 'use server';
 
 /**
- * @fileOverview An AI agent that answers questions about Bali using bali.love as the conceptual source of truth.
+ * @fileOverview An AI agent that converts IDR to a list of specified currencies and displays the result in a table.
  *
- * - answerQuestion - A function that handles the question answering process.
+ * - answerQuestion - A function that handles the currency conversion request.
  * - AnswerQuestionInput - The input type for the answerQuestion function.
  * - AnswerQuestionOutput - The return type for the answerQuestion function.
  */
@@ -12,12 +12,12 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const AnswerQuestionInputSchema = z.object({
-  question: z.string().describe('The question about Bali.'),
+  question: z.string().describe('The user query, potentially asking to convert an IDR amount or for IDR exchange rates.'),
 });
 export type AnswerQuestionInput = z.infer<typeof AnswerQuestionInputSchema>;
 
 const AnswerQuestionOutputSchema = z.object({
-  answer: z.string().describe('The answer to the question about Bali.'),
+  answer: z.string().describe('The currency conversion table in Markdown format, or a message if the query is not about IDR conversion.'),
 });
 export type AnswerQuestionOutput = z.infer<typeof AnswerQuestionOutputSchema>;
 
@@ -29,14 +29,43 @@ const prompt = ai.definePrompt({
   name: 'answerQuestionPrompt',
   input: {schema: AnswerQuestionInputSchema},
   output: {schema: AnswerQuestionOutputSchema},
-  prompt: `You are Bali Buddy, an AI assistant specializing in Bali.
-Your knowledge about Bali is based on information typically found on a comprehensive travel website like bali.love.
-If the user asks "what is bali.love" or a similar question about your knowledge source, explain that bali.love is the website that forms the conceptual basis of your information.
-For all other questions about Bali, provide answers as if they are sourced from such a comprehensive guide.
+  prompt: `You are a currency converter AI. You specialize in converting Indonesian Rupiah (IDR) to a specific list of other currencies.
+When the user asks to convert an amount of IDR (e.g., 'convert 100000 IDR', '150000 IDR to USD', 'how much is 50000 IDR in GBP?') or asks for general IDR exchange rates, you must respond with a Markdown table.
+The table should show the conversion of the specified IDR amount into GBP, USD, MYR, AUD, and SGD.
+If no specific IDR amount is mentioned in the query, use a default amount of 100,000 IDR for the conversion.
 
-Question: {{{question}}}
+The Markdown table must include the following columns:
+- Flag: The flag emoji for the target currency.
+- Code: The 3-letter currency code for the target currency (e.g., USD).
+- Currency Name: The full name of the target currency (e.g., US Dollar).
+- Rate (1 XXX to IDR): A plausible exchange rate, formatted as how many IDR equals 1 unit of the target currency. For example, if 1 USD = 16,000 IDR, this value should be 16000.
+- Amount (for X IDR): The converted amount in the target currency, based on the user's specified IDR amount (or 100,000 IDR if not specified). Show this with 2 decimal places.
 
-Answer: `,
+Use the following plausible (but not live) exchange rates for your calculations:
+- 1 GBP = 20,500 IDR
+- 1 USD = 16,300 IDR
+- 1 MYR = 3,500 IDR
+- 1 AUD = 10,800 IDR
+- 1 SGD = 12,000 IDR
+
+Example table format for a query like "convert 100000 IDR":
+Base Amount: 100,000 IDR
+
+| Flag | Code | Currency Name     | Rate (1 XXX to IDR) | Amount (for 100,000 IDR) |
+| :--: | :--- | :---------------- | :------------------: | :----------------------: |
+| 🇬🇧 | GBP | British Pound     | 20500                | 4.88                     |
+| 🇺🇸 | USD | US Dollar         | 16300                | 6.13                     |
+| 🇲🇾 | MYR | Malaysian Ringgit | 3500                 | 28.57                    |
+| 🇦🇺 | AUD | Australian Dollar | 10800                | 9.26                     |
+| 🇸🇬 | SGD | Singapore Dollar  | 12000                | 8.33                     |
+
+If the user's query does not seem to be about converting IDR or asking for IDR exchange rates, politely state: "I am a currency converter specializing in IDR. Please ask me to convert an IDR amount or ask for IDR exchange rates to GBP, USD, MYR, AUD, or SGD."
+If the user asks to convert IDR to a currency NOT in the list (GBP, USD, MYR, AUD, SGD), respond with the standard table for the supported currencies and add a note: "I can currently only provide conversions from IDR to GBP, USD, MYR, AUD, and SGD."
+
+User query: {{{question}}}
+
+Your response (ensure it's a valid Markdown table if applicable, or the polite message):
+`,
 });
 
 const answerQuestionFlow = ai.defineFlow(
