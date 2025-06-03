@@ -4,88 +4,99 @@
 
 @layer base {
   :root {
-    --background: 0 35% 12%; /* Dark Red Background */
-    --foreground: 0 0% 95%; /* Light Text for Dark Red Background */
+    /* Light Mode: Red on White Theme */
+    --background: 0 0% 100%; /* White */
+    --foreground: 0 0% 13%; /* Near Black for text */
 
-    --card: 0 35% 10%; /* Slightly darker red for cards */
-    --card-foreground: 0 0% 95%; /* Light text on cards */
+    --card: 0 0% 97%; /* Very Light Gray for cards */
+    --card-foreground: 0 0% 13%; 
 
-    --popover: 0 35% 10%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 97%;
+    --popover-foreground: 0 0% 13%;
 
-    --primary: 0 60% 50%; /* Strong Red */
+    --primary: 0 72% 51%; /* Vibrant Red */
     --primary-foreground: 0 0% 98%; /* White text on primary */
 
-    --secondary: 0 40% 30%; /* Muted Red */
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 0 65% 90%; /* Light, slightly desaturated red/pink for backgrounds */
+    --secondary-foreground: 0 72% 40%; /* Darker red text on light secondary */
 
-    --muted: 0 30% 20%; /* Dark muted red */
-    --muted-foreground: 0 0% 65%; /* Grayish text on muted */
+    --muted: 0 0% 94%; /* Light gray for muted backgrounds */
+    --muted-foreground: 0 0% 45%; /* Medium gray for muted text */
 
-    --accent: 15 70% 55%; /* Orange-red accent */
+    --accent: 350 80% 60%; /* A slightly more orange-red accent */
     --accent-foreground: 0 0% 98%; /* White text on accent */
 
     --destructive: 0 84.2% 60.2%; /* Default red for destructive actions */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 30% 22%; /* Subtle red border */
-    --input: 0 30% 25%; /* Input background */
-    --ring: 0 60% 50%; /* Primary red for focus rings */
+    --border: 0 0% 88%; /* Light gray border */
+    --input: 0 0% 92%; /* Light gray input background */
+    --ring: 0 72% 51%; /* Primary red for focus rings */
 
     --radius: 0.5rem;
 
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --chart-1: 0 70% 60%;   /* Red shade */
+    --chart-2: 25 80% 60%;  /* Orange-Red shade */
+    --chart-3: 45 70% 55%;  /* Yellow-Orange shade */
+    --chart-4: 350 75% 65%; /* Pink-Red shade */
+    --chart-5: 0 50% 50%;   /* Muted Red shade */
 
-    --sidebar-background: 0 0% 98%; /* Default light sidebar, can be adjusted if needed for dark red theme */
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    /* Light mode sidebar (white background friendly) */
+    --sidebar-background: 0 0% 98%; 
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 0 72% 45%; /* Darker Red for sidebar primary elements */
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 0 0% 92%; 
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 0 0% 88%;
+    --sidebar-ring: 0 72% 51%; /* Main primary red */
   }
 
   .dark {
-    /* Standard Dark Theme */
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 279 66% 60%; 
-    --primary-foreground: 0 0% 98%;
-    --secondary: 279 50% 20%; 
-    --secondary-foreground: 0 0% 98%;
-    --muted: 300 20% 15%; 
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 208 72% 50%; 
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    /* Dark Mode: Blue Theme */
+    --background: 222 47% 11%; /* Dark Blue */
+    --foreground: 210 40% 98%; /* Light Grayish Blue */
+
+    --card: 222 47% 14%; /* Slightly Lighter Dark Blue for cards */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%; /* Strong Blue */
+    --primary-foreground: 210 40% 98%; /* White text on primary */
+
+    --secondary: 217 33% 25%; /* Muted Darker Blue */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%; /* Dark Muted Blue */
+    --muted-foreground: 215 20% 65%; /* Grayish Blue text on muted */
+
+    --accent: 200 85% 55%; /* Bright Cyan/Sky Blue accent */
+    --accent-foreground: 222 47% 11%; /* Dark text on accent */
+    
+    --destructive: 0 70% 45%; /* Desaturated Red for dark mode destructive */
     --destructive-foreground: 0 0% 98%;
-    --border: 300 20% 20%;
-    --input: 300 20% 20%;
-    --ring: 279 66% 60%; 
 
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border: 217 33% 20%; /* Subtle Blue Border */
+    --input: 217 33% 20%; /* Input Background */
+    --ring: 217 91% 60%; /* Primary blue for focus rings */
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --chart-1: 210 80% 65%;  /* Blue shade 1 */
+    --chart-2: 200 75% 60%;  /* Cyan/Blue shade 2 */
+    --chart-3: 220 70% 70%;  /* Lighter Blue shade 3 */
+    --chart-4: 190 80% 55%;  /* Teal/Cyan shade 4 */
+    --chart-5: 230 65% 60%;  /* Indigo/Blue shade 5 */
+
+    /* Dark mode sidebar (blue theme) */
+    --sidebar-background: 222 47% 9%; /* Even darker blue than card */
+    --sidebar-foreground: 210 40% 95%;
+    --sidebar-primary: 217 91% 60%; /* Main blue primary */
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 222 40% 20%; /* Muted blue for sidebar accent */
+    --sidebar-accent-foreground: 210 40% 95%;
+    --sidebar-border: 222 40% 15%; /* Dark blueish border */
+    --sidebar-ring: 217 91% 60%; /* Main blue ring */
   }
 }
 
