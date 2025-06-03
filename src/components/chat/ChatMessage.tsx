@@ -38,7 +38,7 @@ const ChatMessage: FC<ChatMessageProps> = ({ sender, text, isLoading }) => {
       )}
       <div
         className={cn(
-          "rounded-lg px-3 py-2 shadow-md prose prose-sm dark:prose-invert prose-p:my-1 prose-headings:my-2 prose-table:my-2 prose-th:px-2 prose-th:py-1 prose-td:px-2 prose-td:py-1",
+          "rounded-lg px-3 py-2 shadow-md prose prose-base dark:prose-invert prose-p:my-1 prose-headings:my-2 prose-table:my-2 prose-th:px-2 prose-th:py-1 prose-td:px-2 prose-td:py-1",
           messageMaxWidth,
           isUser
             ? "bg-primary text-primary-foreground rounded-br-none"
@@ -55,7 +55,7 @@ const ChatMessage: FC<ChatMessageProps> = ({ sender, text, isLoading }) => {
         ) : isAi ? (
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
         ) : (
-          <p className="text-sm whitespace-pre-wrap">{text}</p>
+          <p className="text-base whitespace-pre-wrap">{text}</p>
         )}
       </div>
       {isUser && (
