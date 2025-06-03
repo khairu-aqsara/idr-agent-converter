@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -31,7 +32,7 @@ const prompt = ai.definePrompt({
   output: {schema: AnswerQuestionOutputSchema},
   prompt: `You are a currency converter AI. You specialize in converting Indonesian Rupiah (IDR) to a specific list of other currencies.
 When the user asks to convert an amount of IDR (e.g., 'convert 100000 IDR', '150000 IDR to USD', 'how much is 50000 IDR in GBP?') or asks for general IDR exchange rates for supported currencies, you MUST respond with a Markdown table.
-The table should show the conversion of the specified IDR amount into GBP, USD, MYR, AUD, and SGD.
+The table should show the conversion of the specified IDR amount into GBP, USD, MYR, AUD, SGD, JPY, EUR, CAD, CHF, and NZD.
 If no specific IDR amount is mentioned in the query, use a default amount of 100,000 IDR for the conversion.
 
 The Markdown table must include the following columns:
@@ -39,7 +40,7 @@ The Markdown table must include the following columns:
 - Code: The 3-letter currency code for the target currency (e.g., USD).
 - Currency Name: The full name of the target currency (e.g., US Dollar).
 - Rate (1 XXX to IDR): A plausible exchange rate, formatted as how many IDR equals 1 unit of the target currency. For example, if 1 USD = 16,300 IDR, this value should be 16300.
-- Amount (for X IDR): The converted amount in the target currency, based on the user's specified IDR amount (or 100,000 IDR if not specified). Show this with 2 decimal places.
+- Amount (for X IDR): The converted amount in the target currency, based on the user's specified IDR amount (or 100,000 IDR if not specified). Show this with 2 decimal places (except for JPY which should have 0 decimal places).
 
 To calculate the 'Amount (for X IDR)', you will divide the input IDR amount (e.g., 100,000 IDR or the amount specified by the user) by the 'Rate (1 XXX to IDR)' for that currency.
 For example, if the input is 150,000 IDR and the rate for USD is 1 USD = 16,300 IDR, then the 'Amount (for 150,000 IDR)' for USD is 150,000 / 16,300 = 9.20.
@@ -50,6 +51,11 @@ Use the following plausible (but not live) exchange rates for your calculations:
 - 1 MYR = 3,500 IDR
 - 1 AUD = 10,800 IDR
 - 1 SGD = 12,000 IDR
+- 1 JPY = 110 IDR (Note: JPY is often quoted as 100 JPY, but for this table, use 1 JPY rate)
+- 1 EUR = 17,500 IDR
+- 1 CAD = 12,200 IDR
+- 1 CHF = 18,000 IDR
+- 1 NZD = 10,000 IDR
 
 First, state the base IDR amount being converted, for example: "Base Amount: 100,000 IDR".
 Then, provide the Markdown table.
@@ -64,9 +70,14 @@ Base Amount: 100,000 IDR
 | 🇲🇾 | MYR | Malaysian Ringgit | 3500                 | 28.57                    |
 | 🇦🇺 | AUD | Australian Dollar | 10800                | 9.26                     |
 | 🇸🇬 | SGD | Singapore Dollar  | 12000                | 8.33                     |
+| 🇯🇵 | JPY | Japanese Yen      | 110                  | 909                      |
+| 🇪🇺 | EUR | Euro              | 17500                | 5.71                     |
+| 🇨🇦 | CAD | Canadian Dollar   | 12200                | 8.20                     |
+| 🇨🇭 | CHF | Swiss Franc       | 18000                | 5.56                     |
+| 🇳🇿 | NZD | New Zealand Dollar| 10000                | 10.00                    |
 
-If the user's query does not seem to be about converting IDR or asking for IDR exchange rates to the supported currencies, politely state: "I am a currency converter specializing in IDR. Please ask me to convert an IDR amount or ask for IDR exchange rates to GBP, USD, MYR, AUD, or SGD."
-If the user asks to convert IDR to a currency NOT in the list (GBP, USD, MYR, AUD, SGD), respond with the standard table for the supported currencies (using the user's specified IDR amount or 100,000 IDR default) and add a note below the table: "Note: I can currently only provide conversions from IDR to GBP, USD, MYR, AUD, and SGD."
+If the user's query does not seem to be about converting IDR or asking for IDR exchange rates to the supported currencies, politely state: "I am a currency converter specializing in IDR. Please ask me to convert an IDR amount or ask for IDR exchange rates to GBP, USD, MYR, AUD, SGD, JPY, EUR, CAD, CHF, or NZD."
+If the user asks to convert IDR to a currency NOT in the list (GBP, USD, MYR, AUD, SGD, JPY, EUR, CAD, CHF, NZD), respond with the standard table for the supported currencies (using the user's specified IDR amount or 100,000 IDR default) and add a note below the table: "Note: I can currently only provide conversions from IDR to GBP, USD, MYR, AUD, SGD, JPY, EUR, CAD, CHF, and NZD."
 
 User query: {{{question}}}
 
@@ -85,3 +96,4 @@ const answerQuestionFlow = ai.defineFlow(
     return output!;
   }
 );
+
