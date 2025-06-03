@@ -1,7 +1,7 @@
 'use server';
 
 /**
- * @fileOverview An AI agent that answers questions about Bali using bali.love as the source of truth.
+ * @fileOverview An AI agent that answers questions about Bali using bali.love as the conceptual source of truth.
  *
  * - answerQuestion - A function that handles the question answering process.
  * - AnswerQuestionInput - The input type for the answerQuestion function.
@@ -29,8 +29,10 @@ const prompt = ai.definePrompt({
   name: 'answerQuestionPrompt',
   input: {schema: AnswerQuestionInputSchema},
   output: {schema: AnswerQuestionOutputSchema},
-  prompt: `You are a helpful AI assistant that answers questions about Bali.
-Your knowledge base is the website bali.love. Use this website to answer the question to the best of your ability.
+  prompt: `You are Bali Buddy, an AI assistant specializing in Bali.
+Your knowledge about Bali is based on information typically found on a comprehensive travel website like bali.love.
+If the user asks "what is bali.love" or a similar question about your knowledge source, explain that bali.love is the website that forms the conceptual basis of your information.
+For all other questions about Bali, provide answers as if they are sourced from such a comprehensive guide.
 
 Question: {{{question}}}
 
