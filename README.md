@@ -1,6 +1,9 @@
 
 # IDR Currency Converter
 
+![Screenshot 2025-06-03 at 11 55 37](https://github.com/user-attachments/assets/530c9294-5fef-40c7-968f-ca3b14d61179)
+
+
 A Next.js web application that acts as an AI-powered currency converter, specializing in converting Indonesian Rupiah (IDR) to various global currencies. The application features a chat-based interface where users can request conversions or general IDR exchange rates.
 
 ## Features
